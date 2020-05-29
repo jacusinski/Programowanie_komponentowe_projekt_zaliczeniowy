@@ -26,7 +26,7 @@ public class SpringMvcConfig {
 
 		dataSource.setUrl("jdbc:mysql://localhost:3306/light_management");
 		dataSource.setUsername("root");
-		dataSource.setPassword("");
+		dataSource.setPassword("Passw0rd");
 		
 		return dataSource;
 	}

@@ -27,7 +27,7 @@ public class RoomDAOImpl implements RoomDAO{
 		java.util.Date date = new java.util.Date();
 		java.sql.Timestamp sqlCurrentTime = new java.sql.Timestamp(date.getTime());
 		
-        String sql = "INSERT INTO rooms_table (roomName, roomDescription, roomStatus, roomDateOfCreation, roomDateOfModification) VALUES (?, ?, ?, ?, ?)";    
+        String sql = "INSERT INTO rooms (roomName, roomDescription, roomStatus, roomDateOfCreation, roomDateOfModification) VALUES (?, ?, ?, ?, ?)";    
         return jdbcTemplate.update(sql, 
         		room.getRoomName(), 
         		room.getRoomDescription(), 
@@ -43,7 +43,7 @@ public class RoomDAOImpl implements RoomDAO{
 		java.util.Date date = new java.util.Date();
 		java.sql.Timestamp sqlCurrentTime = new java.sql.Timestamp(date.getTime());
 		
-		String sql = "UPDATE rooms_table SET roomName=?, roomDescription=?, roomStatus=?, roomDateOfModification=? WHERE roomId=?";	
+		String sql = "UPDATE rooms SET roomName=?, roomDescription=?, roomStatus=?, roomDateOfModification=? WHERE roomId=?";	
 		return jdbcTemplate.update(sql, 
 				room.getRoomName(), 
 				room.getRoomDescription(), 
@@ -56,7 +56,7 @@ public class RoomDAOImpl implements RoomDAO{
 	
 	@Override
 	public Room get(Integer roomId) {
-		String sql = "SELECT * FROM rooms_table WHERE roomId=" + roomId;
+		String sql = "SELECT * FROM rooms WHERE roomId=" + roomId;
 		
 		ResultSetExtractor<Room> extractor = new ResultSetExtractor<Room>() {
 	    	 
@@ -82,14 +82,14 @@ public class RoomDAOImpl implements RoomDAO{
 	
 	@Override
 	public int delete(Integer roomId) {
-		String sql = "DELETE FROM rooms_table WHERE roomId=" + roomId;
+		String sql = "DELETE FROM rooms WHERE roomId=" + roomId;
 		return jdbcTemplate.update(sql);
 	}
 
 	
 	@Override
 	public List<Room> list() {
-		String sql = "SELECT * FROM rooms_table";
+		String sql = "SELECT * FROM rooms";
 		
 		RowMapper<Room> rowMapper = new RowMapper<Room>() {
 
